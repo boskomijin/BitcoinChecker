@@ -1,0 +1,10 @@
+#Application server port
+server:
+    port: 8081
+spring:
+    jpa:
+        show-sql: true
+    # Flyway --> For development turn this to true!
+    flyway:
+        enabled: true
+        locations: classpath:/data/hsqldb/migrations

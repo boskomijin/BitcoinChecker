@@ -1,0 +1,6 @@
+#API configuration
+app:
+  paths:
+    # Path for getting current bitcoin price.
+    latest-path: /bitcoin/latest
+    historical-path: /bitcoin/historical

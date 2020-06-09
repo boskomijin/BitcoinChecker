@@ -1,0 +1,32 @@
+###
+# The Base Application Configuration File
+###
+spring:
+    # Profile Configuration
+    # available optional profiles (but for now mandatory): hsqldb, dev, batch
+    # non-optional (reuqired profiles): api-endpoints, app-endpoints
+    profiles:
+        active: hsqldb,dev,batch
+        include: api-endpoints,app-endpoints
+    # Data Source Configuration
+    jpa:
+        database-platform: org.hibernate.dialect.HSQLDialect
+        # Hibernate
+        hibernate:
+            naming:
+                physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        properties:
+            # Jadira
+            jadira:
+                usertype:
+                    autoRegisterUserTypes: true
+    # Cache Configuration
+    cache:
+        cache-names: bitcoins
+        caffeine:
+            spec: maximumSize=250,expireAfterAccess=600s
+#Logging configuration
+logging:
+    file: bitcoin.log
+    pattern:
+        file: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"

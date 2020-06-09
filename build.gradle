@@ -1,0 +1,75 @@
+plugins {
+    // Apply the spring boot plugin to add support for spring boot.
+	id 'org.springframework.boot' version '2.3.0.RELEASE'
+	// Apply the dependency management plugin for direct and transitive dependencies.
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	// Apply the java plugin to add support for Java.
+	id 'java'
+	// Apply the eclipse plugin for eclipse IDE usage.
+    id 'eclipse'
+}
+
+// Adding group and version.
+group = 'com.btc.ratecheck'
+version = '0.0.1-SNAPSHOT'
+
+// Code compatibility
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+// Defining configurations.
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+// Repositories which is using.
+repositories {
+	mavenCentral()
+}
+
+ext {
+    modelMapperVersion = '2.3.7'
+    javassistVersion = '3.27.0-GA'
+    jadiraVersion = '7.0.0.CR1'
+    logbackClasicVersion = '1.2.3'
+    javaxXmlBindVersion = '2.3.1'
+    apacheCommonsLang3Version = '3.10'
+    jacksonDatatypeJsr310Version = '2.11.0'
+}
+
+// Dependency definitions.
+dependencies {
+    // Spring and srping boot dependencies (use the same version as plugin).
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	// Mapping dependencies.
+    implementation "org.modelmapper:modelmapper:$modelMapperVersion"
+    // Caching dependencies.
+    implementation 'com.github.ben-manes.caffeine:caffeine'
+    // Database dependencies.
+    implementation "org.jadira.usertype:usertype.core:$jadiraVersion"
+    runtimeOnly 'mysql:mysql-connector-java'
+    runtimeOnly 'org.hsqldb:hsqldb'
+    // Apache functional dependencies
+    implementation "org.apache.commons:commons-lang3:$apacheCommonsLang3Version"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonDatatypeJsr310Version"
+    // Lombok dependencies.
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	// Logging dependencies.
+    implementation "ch.qos.logback:logback-classic:$logbackClasicVersion"
+    // Marshalling dependencies.
+    implementation "javax.xml.bind:jaxb-api:$javaxXmlBindVersion"
+	// Test dependencies.
+    testImplementation "org.javassist:javassist:$javassistVersion"
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    testImplementation 'org.springframework.security:spring-security-test'
+}
+
+// Test definitions.
+test {
+	useJUnitPlatform()
+}

@@ -1,0 +1,8 @@
+###
+# The Batch Application Configuration File
+#
+# This file is included when the 'batch' Spring profile is active.
+###
+# Bitcoin rate obtaining process configuration - runs every minute in 0 seconds.
+batch:
+    cron: 0 * * * * *
